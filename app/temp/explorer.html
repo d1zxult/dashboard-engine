@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US" data-bs-theme="auto">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>app/explorer</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='media/favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='library/bootstrap-5.3.3/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='library/fontawesome-6.6.0/css/fontawesome.min.css') }}">
+
+    {{ font_awesome.load_css() }}
+
+    <style>
+      body {
+        background-color: #f8f9fa;
+        height: 100vh;
+      }
+
+      .sidebar {
+        height: 100vh;
+        padding: 20px;
+        background-color: #343a40;
+        color: white;
+      }
+
+      .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin: 15px 0;
+      }
+
+      .content {
+        padding: 20px;
+        background-color: #fff;
+        height: 100vh;
+        overflow-y: auto;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+            <h4>dashboard-engine</h4>
+            <h5>version: 0.0.1-a (alpha)</h5>
+            <a href="/overview" class="btn btn-secondary">
+              <i class="fa-solid fa-microchip" style="color: #ffffff;"></i> Overview
+            </a>
+            <a href="#" class="btn btn-secondary">
+              <i class="fa-solid fa-folder" style="color: #ffffff;"></i> Explorer
+            </a>
+            <a href="/terminal" class="btn btn-secondary">
+              <i class="fa-solid fa-terminal" style="color: #ffffff;"></i> Terminal
+            </a>
+            <a href="/modules" class="btn btn-secondary">
+              <i class="fa-solid fa-cubes" style="color: #ffffff;"></i> Modules
+            </a>
+            <a href="/settings" class="btn btn-secondary">
+              <i class="fa-solid fa-gear" style="color: #ffffff;"></i> Settings
+            </a>
+          </nav>
+
+        <!-- Main content (empty for now) -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
+          <!-- Placeholder for console output or other content -->
+        </main>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='library/bootstrap-5.3.3/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='library/fontawesome-6.6.0/js/fontawesome.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='library/chartjs-4.4.1/chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='library/jquery-3.7.1/jquery.min.js') }}"></script>
+
+    {{ font_awesome.load_js() }}
+
+  </body>
+</html>

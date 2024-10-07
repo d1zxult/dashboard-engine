@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US" data-bs-theme="auto">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>app/auth</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='media/favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='library/bootstrap-5.3.3/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='library/fontawesome-6.6.0/css/fontawesome.min.css') }}">
+
+    {{ font_awesome.load_css() }}
+
+    <style>
+      body {
+        background-color: #343a40;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .login-form {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 400px;
+      }
+      .form-title {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="login-form">
+      <div class="form-title">dashboard-engine</div>
+      <form action="/overview" method="get">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter your username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter your password">
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-secondary">Login</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='library/bootstrap-5.3.3/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='library/fontawesome-6.6.0/js/fontawesome.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='library/chartjs-4.4.1/chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='library/jquery-3.7.1/jquery.min.js') }}"></script>
+
+    {{ font_awesome.load_js() }}
+
+  </body>
+</html>

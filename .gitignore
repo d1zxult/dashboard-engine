@@ -1,0 +1,11 @@
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+__pycache__/
+app/__pycache__/
+engine/__pycache__/
+modules/__pycache__/
