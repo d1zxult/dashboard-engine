@@ -18,12 +18,10 @@ This is a Python Flask web application designed to manage a server through a web
 2. Install the required packages:
    - pip install -r requirements.txt
 
-3. Set up the application configuration in config.py.
-
-4. Run the application:
+3. Run the application:
    - python3 initialization.py
 
-5. Open your web browser and navigate to http://localhost:5000.
+4. Open your web browser and navigate to http://localhost:5000.
 
 ## Usage
 
