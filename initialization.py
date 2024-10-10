@@ -1,7 +1,7 @@
 from flask import render_template
 from configuration import create_app
 
-app, font_awesome, terminal_socket, resource_monitor, = create_app() # Create the app and ResourceMonitor instance
+app, resources_handler, compatibility_core = create_app()
 
 @app.route('/')
 def index():
@@ -28,4 +28,4 @@ def setting():
     return render_template('settings.html')
 
 if __name__ == "__main__":
-    terminal_socket.socketio.run(app, host='0.0.0.0', port=5000, debug=True) # Use socketio to run the app with WebSocket support
+    app.run(host='0.0.0.0', port=5000, debug=True)
