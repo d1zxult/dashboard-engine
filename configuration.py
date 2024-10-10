@@ -1,18 +1,12 @@
 from flask import Flask
-from flask_font_awesome import FontAwesome # Импортируем патч для FontAwesome
-from engine.explorer_handler import explorer_handler_bp  # Импортируем blueprint проводника
-from engine.resource_monitor import ResourceMonitor  # Импортируем класс ResourceMonitor
-from engine.terminal_socket import TerminalSocket # Импортируем класс TerminalSocket
+from engine.resources_handler import ResourcesHandler
+from engine.compatibility_core import CompatibilityCore
 
 def create_app():
-    app = Flask(__name__, template_folder='app/temp', static_folder='app/static') # Создание и конфигурация приложения
+    app = Flask(__name__, template_folder='app/temp', static_folder='app/static')
 
-    font_awesome = FontAwesome(app) # Инициализация FontAwesome
+    resources_handler = ResourcesHandler() # Создание экземпляра ResourcesHandler
 
-    terminal_socket = TerminalSocket(app) # Создание экземпляра TerminalSocket
+    compatibility_core = CompatibilityCore() # Создание экземпляра CompatibilityCore
 
-    resource_monitor = ResourceMonitor() # Создание экземпляра ResourceMonitor
-
-    app.register_blueprint(explorer_handler_bp) # Регистрация blueprint проводника
-
-    return app, font_awesome, terminal_socket, resource_monitor
+    return app, resources_handler, compatibility_core
