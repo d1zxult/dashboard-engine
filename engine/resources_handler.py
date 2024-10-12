@@ -1,4 +1,5 @@
 import psutil
+import os
 import subprocess
 
 class ResourcesHandler:
@@ -14,6 +15,7 @@ class ResourcesHandler:
         self.swap_total = None
         self.swap_used = None
         self.swap_free = None
+        self.uptime = None
 
     def get_system_info(self):
         """Обновляет информацию о загруженности системы и сохраняет в объекте"""
@@ -42,6 +44,18 @@ class ResourcesHandler:
         except Exception as e:
             print(f'Ошибка get_cpu_temp(): {e}')
 
+    def get_uptime(self):
+        """Получение времени работы сервера (uptime)"""
+        try:
+            with open("/proc/uptime", "r") as f:
+                uptime_seconds = float(f.readline().split()[0])
+            uptime_hours = uptime_seconds / 3600
+            self.uptime = round(uptime_hours, 2)
+            return self.uptime
+        except FileNotFoundError:
+            print("Файл /proc/uptime не найден.")
+            return None
+
     def get_resource_data(self):
         """Получает данные о ресурсах в виде словаря для передачи через WebSocket"""
         self.get_system_info()
@@ -67,5 +81,6 @@ class ResourcesHandler:
             'memory_free': self.memory_free,
             'swap_total': self.swap_total,
             'swap_used': self.swap_used,
-            'swap_free': self.swap_free
+            'swap_free': self.swap_free,
+            'uptime': self.uptime
         }

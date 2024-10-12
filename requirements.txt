@@ -3,3 +3,4 @@ psutil==6.0.0
 colorama==0.4.6
 loguru==0.7.2
 flask-socketio==5.4.1
+gputil==1.4.0
