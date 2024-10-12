@@ -1,7 +1,7 @@
 from flask import render_template
 from configuration import create_app
 
-app, resources_handler, compatibility_core = create_app()
+app, resources_handler = create_app()
 
 @app.route('/')
 def index():
