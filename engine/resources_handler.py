@@ -17,7 +17,6 @@ class ResourcesHandler:
 
     def get_system_info(self):
         """Обновляет информацию о загруженности системы и сохраняет в объекте"""
-
         self.cpu_percent = psutil.cpu_percent(interval=1)
         self.cpu_cores = psutil.cpu_count()
         self.cpu_threads = psutil.cpu_count(logical=False)
@@ -25,24 +24,35 @@ class ResourcesHandler:
         memory_info = psutil.virtual_memory()
         swap_info = psutil.swap_memory()
 
-        self.memory_total = memory_info.total // (1024 ** 2) # MB
-        self.memory_used = memory_info.used // (1024 ** 2) # MB
-        self.memory_free = memory_info.free // (1024 ** 2) # MB
-        self.swap_total = swap_info.total // (1024 ** 2) # MB
-        self.swap_used = swap_info.used // (1024 ** 2) # MB
-        self.swap_free = swap_info.free // (1024 ** 2) # MB
+        self.memory_total = round(memory_info.total / (1024 ** 2), 1)  # MB
+        self.memory_used = round(memory_info.used / (1024 ** 2), 1)    # MB
+        self.memory_free = round(memory_info.free / (1024 ** 2), 1)    # MB
+        self.swap_total = round(swap_info.total / (1024 ** 2), 1)      # MB
+        self.swap_used = round(swap_info.used / (1024 ** 2), 1)        # MB
+        self.swap_free = round(swap_info.free / (1024 ** 2), 1)        # MB
 
     def get_cpu_temp(self):
         """Обновляет информацию о температуре процессора и сохраняет ее в объекте"""
         try:
             output = subprocess.check_output(['sensors']).decode('utf-8')
-
             for line in output.split('\n'):
                 if 'Core' in line or 'Package id' in line:
                     self.cpu_temp = line.strip()
                     break
         except Exception as e:
             print(f'Ошибка get_cpu_temp(): {e}')
+
+    def get_resource_data(self):
+        """Получает данные о ресурсах в виде словаря для передачи через WebSocket"""
+        self.get_system_info()
+        self.get_cpu_temp()
+
+        return {
+            'cpu_used': self.cpu_percent,
+            'gpu_used': 0,
+            'memory_used': round(self.memory_used / self.memory_total * 100) if self.memory_total else 0,
+            'swap_used': round(self.swap_used / self.swap_total * 100) if self.swap_total else 0
+        }
 
     def to_dict(self):
         """Возвращает информацию в виде словаря"""

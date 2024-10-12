@@ -69,7 +69,7 @@
         <nav class="col-md-3 col-lg-2 d-md-block sidebar">
           <div class="text-center">
             <h4>dashboard-engine</h4>
-            <h5>version: 0.0.2-a (alpha)</h5>
+            <h5>version: 0.0.3-a (alpha)</h5>
           </div>
           <a href="#" class="btn btn-secondary">
             <i class="bi bi-cpu-fill" style="color: #f8f9fa;"></i> Overview
@@ -160,6 +160,7 @@
     <script src="{{ url_for('static', filename='scripts/core.script.js') }}"></script>
 
     <script>
+
       const socket = io();
 
       const createDoughnutChart = (ctx, label, borderColor) => {
@@ -235,6 +236,11 @@
         memoryChart.update();
         swapChart.update();
       });
+
+      socket.on('connect', () => {
+        socket.emit('request_system_data');
+      });
+
     </script>
 
   </body>

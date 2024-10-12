@@ -7,6 +7,6 @@ def create_app():
 
     resources_handler = ResourcesHandler() # Создание экземпляра ResourcesHandler
 
-#  compatibility_core = CompatibilityCore() # Создание экземпляра CompatibilityCore
+#   compatibility_core = CompatibilityCore() # Создание экземпляра CompatibilityCore
 
     return app, resources_handler
